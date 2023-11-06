@@ -1,6 +1,6 @@
 import random
 
-from card import Card
+from cards.card import Card
 
 
 def create_deck():
@@ -21,9 +21,6 @@ def create_deck():
 class Deck:
     def __init__(self):
         self.deck = create_deck()
-
-    def shuffle(self):
-        return random.shuffle(self.deck)
 
     def print_deck(self):
         for x in self.deck:
