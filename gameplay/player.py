@@ -1,12 +1,17 @@
 class Player:
-    def __init__(self, score):
-        self.score = score
+    def __init__(self):
+        self.cards = []
 
-    def add(self, val):
-        self.score += val
+    def add(self, card):
+        self.cards.append(card)
 
-    def reset_score(self):
-        self.score = 0
+    def reset_cards(self):
+        self.cards = []
 
     def get_score(self):
-        return self.score
+        res = 0
+
+        for c in self.cards:
+            res += c.get_value()
+
+        return res

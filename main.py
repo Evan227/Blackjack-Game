@@ -1,3 +1,5 @@
+import time
+
 from cards.shoe import Shoe
 
 from gameplay.blackjack import BlackJack
@@ -22,20 +24,24 @@ def main():
             blackjack.start_game()
             first_turn = False
 
+        time.sleep(1)
         user_input = input("press h to hit, s to stand, p for probabilities (card count, probability "
                            "of next card being 10, etc.), q to quit\n")
 
         match user_input:
             case 'h':
-                blackjack.hit()
+                blackjack.hit(True)
+
+                if blackjack.is_busted(True):
+                    blackjack.dealer_play()
+                    first_turn = True
             case 's':
-                print('hold')
+                blackjack.dealer_play()
+                first_turn = True
             case 'p':
                 print('hold')
             case 'q':
-                active = False
-                first_turn = True
-                continue
+                exit()
 
 
 main()
