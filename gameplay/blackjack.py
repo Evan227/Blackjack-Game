@@ -11,6 +11,7 @@ class BlackJack:
         self.past_cards = []
 
     def start_game(self):
+        time.sleep(1)
         print("\nStarting a new game\n")
         first_player_card = self.shoe.pop()
         hidden_bot_card = self.shoe.pop()
@@ -27,6 +28,7 @@ class BlackJack:
         self.dealer.add(hidden_bot_card)
         self.dealer.add(revealed_bot_card)
 
+        time.sleep(1)
         print("My revealed card is: " + revealed_bot_card.get_card() + "\n")
 
         time.sleep(1)
@@ -59,14 +61,11 @@ class BlackJack:
         time.sleep(1)
         print(f"Total value is: {score}\n")
 
-        if score == 21:
+        '''if score == 21:
             time.sleep(1)
-            print("BLACKJACK")
+            print("BLACKJACK")'''
 
-            if is_player:
-                self.dealer_play()
-
-    def is_busted(self, is_player):
+    def is_busted_or_blackjack(self, is_player):
         score = 0
 
         if is_player:
@@ -74,7 +73,14 @@ class BlackJack:
         else:
             score = self.dealer.get_score()
 
+        if score == 21:
+            time.sleep(1)
+            print("BLACKJACK")
+
+            return True
+
         if score > 21:
+            time.sleep(1)
             print("BUSTED\n")
 
             if is_player:
@@ -98,7 +104,7 @@ class BlackJack:
         time.sleep(1)
         print(f"My total value is {self.dealer.get_score()}")
 
-        while not self.is_busted(False):
+        while not self.is_busted_or_blackjack(False):
             if self.dealer.get_score() >= 17:
                 break
 
@@ -109,10 +115,13 @@ class BlackJack:
 
     def end_game(self):
         if self.player.get_score() > self.dealer.get_score():
+            time.sleep(1)
             print("You Win\n")
         elif self.player.get_score() == self.dealer.get_score():
+            time.sleep(1)
             print("Push\n")
         else:
+            time.sleep(1)
             print("I win, you lose\n")
 
         self.player.reset_cards()

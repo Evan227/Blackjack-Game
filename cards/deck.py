@@ -1,18 +1,17 @@
-import random
-
 from cards.card import Card
+
+from cards.constants import (
+    Suit,
+    Cards
+)
 
 
 def create_deck():
     res = []
 
-    suits = ["Diamonds", "Hearts", "Spades", "Clubs"]
-    names = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"]
-    vals = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
-
-    for x in suits:
-        for y in range(len(names)):
-            hold = Card(x, names[y], vals[y])
+    for x in Suit:
+        for y in Cards:
+            hold = Card(x.value, y.name, y.value)
             res.append(hold)
 
     return res

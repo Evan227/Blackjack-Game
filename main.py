@@ -6,6 +6,7 @@ from gameplay.blackjack import BlackJack
 
 
 def main():
+    print("Welcome to Blackjack")
     amount_of_decks = input("How many decks do you want in the shoe?\n")
 
     if not amount_of_decks.isnumeric():
@@ -32,7 +33,7 @@ def main():
             case 'h':
                 blackjack.hit(True)
 
-                if blackjack.is_busted(True):
+                if blackjack.is_busted_or_blackjack(True):
                     blackjack.dealer_play()
                     first_turn = True
             case 's':
@@ -41,7 +42,9 @@ def main():
             case 'p':
                 print('hold')
             case 'q':
-                exit()
+                active = False
+
+    print("Thank you for playing")
 
 
 main()
