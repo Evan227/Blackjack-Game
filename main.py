@@ -40,7 +40,7 @@ def main():
                 blackjack.dealer_play()
                 first_turn = True
             case 'p':
-                print('hold')
+                blackjack.print_probability()
             case 'q':
                 active = False
 

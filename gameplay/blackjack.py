@@ -2,13 +2,15 @@ import time
 
 from gameplay.player import Player
 
+from gameplay.probablity import Probability
+
 
 class BlackJack:
     def __init__(self, shoe):
         self.player = Player()
         self.dealer = Player()
         self.shoe = shoe
-        self.past_cards = []
+        self.probability = Probability(0)
 
     def start_game(self):
         time.sleep(1)
@@ -18,10 +20,10 @@ class BlackJack:
         second_player_card = self.shoe.pop()
         revealed_bot_card = self.shoe.pop()
 
-        self.past_cards.append(first_player_card)
-        self.past_cards.append(hidden_bot_card)
-        self.past_cards.append(second_player_card)
-        self.past_cards.append(revealed_bot_card)
+        self.probability.add_to_count(self.probability.card_count(first_player_card))
+        self.probability.add_to_count(self.probability.card_count(hidden_bot_card))
+        self.probability.add_to_count(self.probability.card_count(second_player_card))
+        self.probability.add_to_count(self.probability.card_count(revealed_bot_card))
 
         self.player.add(first_player_card)
         self.player.add(second_player_card)
@@ -46,7 +48,7 @@ class BlackJack:
         else:
             self.dealer.add(player_card)
 
-        self.past_cards.append(player_card)
+        self.probability.add_to_count(self.probability.card_count(player_card))
 
         time.sleep(1)
         print("Your next card: " + player_card.get_card())
@@ -60,10 +62,6 @@ class BlackJack:
 
         time.sleep(1)
         print(f"Total value is: {score}\n")
-
-        '''if score == 21:
-            time.sleep(1)
-            print("BLACKJACK")'''
 
     def is_busted_or_blackjack(self, is_player):
         score = 0
@@ -126,3 +124,7 @@ class BlackJack:
 
         self.player.reset_cards()
         self.dealer.reset_cards()
+
+    def print_probability(self):
+        time.sleep(1)
+        print(f"\nCard count is: {self.probability.count}\n")
