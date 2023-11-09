@@ -23,6 +23,11 @@ def main():
     while active:
         if first_turn:
             blackjack.start_game()
+
+            if blackjack.is_busted_or_blackjack(True):
+                blackjack.dealer_play()
+                continue
+
             first_turn = False
 
         time.sleep(1)
