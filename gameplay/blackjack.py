@@ -5,7 +5,7 @@ from gameplay.player import Player
 from gameplay.probablity import Probability
 
 
-class BlackJack: # implementing splitting a pair
+class BlackJack: # TODO: implementing splitting a pair
     """
     class to generate the Blackjack game for the user
     """

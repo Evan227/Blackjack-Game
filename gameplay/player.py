@@ -1,3 +1,5 @@
+from cards.constants import Cards
+
 class Player:
     """
     class to simulate a player in the blackjack game
@@ -39,9 +41,9 @@ class Player:
             if c.get_name() == "Ace":
                 has_ace = True
 
-            res += c.get_value()
+            if has_ace and c.get_name == Cards.Ace.name and res > 21:
+                res -= 10
 
-        if res > 21 and has_ace:
-            res -= 10
+            res += c.get_value()
 
         return res
